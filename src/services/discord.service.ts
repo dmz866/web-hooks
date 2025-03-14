@@ -5,10 +5,18 @@ export class DiscordService {
     }
 
     async notify(message: string) {
+        const body = {
+            content: message,
+            embeds: [
+                {
+                    image: { url: 'XXXXXXXXXXXX' }
+                }
+            ]
+        };
         const resp = await fetch(envs.DISCORD_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: message })
+            body: JSON.stringify(body)
         });
 
         if (!resp.ok) {
